@@ -1,0 +1,1 @@
+cordova plugin add https://github.com/mulyoved/mappo-plugin-indoor-atlas.git

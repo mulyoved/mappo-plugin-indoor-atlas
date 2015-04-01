@@ -37,12 +37,15 @@ import android.hardware.SensorManager;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 /**
  * This class listens to the indooratlas sensor and stores the latest
  * acceleration values x,y,z.
  */
 public class IndoorAtlasListener extends CordovaPlugin implements SensorEventListener {
+
+    public static String TAG = "IndoorAtlas";
 
     public static int STOPPED = 0;
     public static int STARTING = 1;
@@ -86,6 +89,8 @@ public class IndoorAtlasListener extends CordovaPlugin implements SensorEventLis
      */
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+
+        Log.i(TAG, "initialize");
         super.initialize(cordova, webView);
         this.sensorManager = (SensorManager) cordova.getActivity().getSystemService(Context.SENSOR_SERVICE);
     }
@@ -99,6 +104,7 @@ public class IndoorAtlasListener extends CordovaPlugin implements SensorEventLis
      * @return              Whether the action was valid.
      */
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
+        Log.i(TAG, "execute: "+ action + ", args:" + args.toString());
         if (action.equals("start")) {
             this.callbackContext = callbackContext;
             if (this.status != IndoorAtlasListener.RUNNING) {
@@ -127,7 +133,9 @@ public class IndoorAtlasListener extends CordovaPlugin implements SensorEventLis
      * Stop listener.
      */
     public void onDestroy() {
+        Log.i(TAG, "onDestroy");
         this.stop();
+
     }
 
     //--------------------------------------------------------------------------
