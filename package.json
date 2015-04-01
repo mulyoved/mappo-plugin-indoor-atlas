@@ -1,0 +1,21 @@
+{
+  "name": "cordova-plugin-indoor-atlas",
+  "version": "0.2.12-dev",
+  "description": "Cordova Indoor-Atlas Plugin",
+  "cordova": {
+    "id": "cordova-plugin-indoor-atlas",
+    "platforms": [
+      "android",
+      "browser"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-indoor-atlas.git"
+  },
+  "keywords": [
+    "cordova"
+  ],
+  "author": "Apache Software Foundation",
+  "license": "Apache 2.0"
+}
