@@ -19,15 +19,14 @@
 -->
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-           id="cordova-plugin-indoor-atlas"
+           id="mappo-plugin-indoor-atlas"
       version="0.2.12-dev">
 	
     <name>Indoor-Atlas</name>
     <description>Cordova Indoor-Atlas Plugin</description>
     <license>Apache 2.0</license>
     <keywords>cordova,device,motion</keywords>
-    <repo>https://git-wip-us.apache.org/repos/asf/cordova-plugin-indoor-atlas.git</repo>
-    <issue>https://issues.apache.org/jira/browse/CB/component/12320636</issue>
+    <repo>https://github.com/mulyoved/mappo-plugin-indoor-atlas.git</repo>
 
     <js-module src="www/NavPosition.js" name="NavPosition">
         <clobbers target="NavPosition" />

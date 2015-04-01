@@ -19,7 +19,7 @@
 -->
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    id="cordova-plugin-indoor-atlas-tests"
+    id="mappo-plugin-indoor-atlas-tests"
     version="0.2.12-dev">
     <name>Cordova Indoor-Atlas Plugin Tests</name>
     <license>Apache 2.0</license>
