@@ -247,6 +247,7 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         // Success callback
         var success = function (a) {
           console.log("success");
+          if (document.getElementById('roundtrip')) {
             document.getElementById('roundtrip').innderHTML = roundNumber(a.roundtrip);
             document.getElementById('lat').innderHTML = roundNumber(a.lat);
             document.getElementById('lon').innderHTML = roundNumber(a.lon);
@@ -257,8 +258,9 @@ exports.defineManualTests = function (contentEl, createActionButton) {
             document.getElementById('j').innderHTML = a.j;
             document.getElementById('heading').innderHTML = roundNumber(a.heading);
             document.getElementById('uncertainty').innderHTML = roundNumber(a.uncertainty);
-            document.getElementById('calibrationState').innderHTML = a.calibrationState;
+            document.getElementById('calibration-state').innderHTML = a.calibrationState;
             document.getElementById('calibration').innderHTML = roundNumber(a.calibration);
+          }
         };
 
         // Fail callback
@@ -299,19 +301,21 @@ exports.defineManualTests = function (contentEl, createActionButton) {
 
         // Success callback
         var success = function (a) {
-          document.getElementById('roundtrip').innderHTML = roundNumber(a.roundtrip);
-          document.getElementById('lat').innderHTML = roundNumber(a.lat);
-          document.getElementById('lon').innderHTML = roundNumber(a.lon);
-          document.getElementById('timestamp').innderHTML = a.timestamp;
-          document.getElementById('x').innderHTML = roundNumber(a.x);
-          document.getElementById('y').innderHTML = roundNumber(a.y);
-          document.getElementById('i').innderHTML = a.i;
-          document.getElementById('j').innderHTML = a.j;
-          document.getElementById('heading').innderHTML = roundNumber(a.heading);
-          document.getElementById('uncertainty').innderHTML = roundNumber(a.uncertainty);
-          document.getElementById('calibrationState').innderHTML = a.calibrationState;
-          document.getElementById('calibration').innderHTML = roundNumber(a.calibration);
+          if (document.getElementById('roundtrip')) {
+            document.getElementById('roundtrip').innderHTML = roundNumber(a.roundtrip);
+            document.getElementById('lat').innderHTML = roundNumber(a.lat);
+            document.getElementById('lon').innderHTML = roundNumber(a.lon);
+            document.getElementById('timestamp').innderHTML = a.timestamp;
+            document.getElementById('x').innderHTML = roundNumber(a.x);
+            document.getElementById('y').innderHTML = roundNumber(a.y);
+            document.getElementById('i').innderHTML = a.i;
+            document.getElementById('j').innderHTML = a.j;
+            document.getElementById('heading').innderHTML = roundNumber(a.heading);
+            document.getElementById('uncertainty').innderHTML = roundNumber(a.uncertainty);
+            document.getElementById('calibration-state').innderHTML = a.calibrationState;
+            document.getElementById('calibration').innderHTML = roundNumber(a.calibration);
             console.log("getAccel success callback");
+          }
         };
 
         // Fail callback
@@ -329,20 +333,20 @@ exports.defineManualTests = function (contentEl, createActionButton) {
      * Set indooratlas status
      */
     var setAccelStatus = function (status) {
-        document.getElementById('accel_status').innerHTML = status;
+        document.getElementById('indooratlas_status').innerHTML = status;
     };
 
     /******************************************************************************/
 
     var indooratlas_tests = '<div id="getNavPosition"></div>' +
-        'Expected result: Will update the status box with X and Y values when pressed. Status will read "Stopped"' +
+        '(version 1.0) Expected result: Will update the status box with X and Y values when pressed. Status will read "Stopped"' +
         '<p/> <div id="watchNavPosition"></div>' +
         'Expected result: When pressed, will start a watch on the indooratlas and update X,Y values when movement is sensed. Status will read "Running"' +
         '<p/> <div id="clearNavPosition"></div>' +
         'Expected result: Will clear the indooratlas watch, so X,Y,Z values will no longer be updated. Status will read "Stopped"';
 
-    contentEl.innerHTML = '<div id="info">' +
-        'Status: <span id="accel_status">Stopped</span>' +
+    contentEl.innerHTML = '<div id="indoor_atlas_info">' +
+        'Status: <span id="indooratlas_status">Stopped</span>' +
         '<table width="100%">' +
         '<tr><td width="20%">roundtrip:</td><td id="roundtrip"> </td></tr>' +
         '<tr><td width="20%">lat:</td><td id="lat"> </td></tr>' +
@@ -354,7 +358,7 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         '<tr><td width="20%">j:</td><td id="j"> </td></tr>' +
         '<tr><td width="20%">heading:</td><td id="heading"> </td></tr>' +
         '<tr><td width="20%">uncertainty:</td><td id="uncertainty"> </td></tr>' +
-        '<tr><td width="20%">calibrationState:</td><td id="calibrationState"> </td></tr>' +
+        '<tr><td width="20%">calibrationState:</td><td id="calibration-state"> </td></tr>' +
         '<tr><td width="20%">calibration:</td><td id="calibration"> </td></tr>' +
         '</table></div>' +
     indooratlas_tests;
