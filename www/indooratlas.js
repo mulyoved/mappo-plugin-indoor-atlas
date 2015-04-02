@@ -44,7 +44,7 @@ var accel = null;
 function start() {
     exec(function(a) {
         var tempListeners = listeners.slice(0);
-        accel = new NavPosition(a.x, a.y, a.z, a.timestamp);
+        accel = new NavPosition(a.x,a.y,a.timestamp,a.i,a.j,a.roundtrip,a.lat,a.lon,a.heading,a.uncertainty, a.calibrationState, a.calibration);
         for (var i = 0, l = tempListeners.length; i < l; i++) {
             tempListeners[i].win(accel);
         }

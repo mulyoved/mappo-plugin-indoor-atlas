@@ -77,6 +77,8 @@ public class IndoorAtlasListener extends CordovaPlugin implements com.indooratla
     private double lon;
     private double heading;
     private double uncertainty;
+    private double calibration;
+    private String calibrationState;
 
     private int status;                                 // status of listener
 
@@ -108,6 +110,9 @@ public class IndoorAtlasListener extends CordovaPlugin implements com.indooratla
         this.lon = 0;
         this.heading = 0;
         this.uncertainty = 0;
+        this.calibrationState = 'unknown';
+        this.calibration = 0;
+
         this.setStatus(IndoorAtlasListener.STOPPED);
      }
 
@@ -352,6 +357,8 @@ public class IndoorAtlasListener extends CordovaPlugin implements com.indooratla
             r.put("lon", this.lon);
             r.put("heading", this.heading);
             r.put("uncertainty", this.uncertainty);
+            r.put("calibrationState", this.calibrationState);
+            r.put("calibration", this.calibration);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -455,6 +462,8 @@ public class IndoorAtlasListener extends CordovaPlugin implements com.indooratla
         this.pixle_j = state.getImagePoint().getJ();
         this.heading = state.getHeadingDegrees();
         this.uncertainty = state.getUncertainty();
+        this.calibrationState = "completed";
+        this.calibration = -1;
 
         this.win();
     }
@@ -507,6 +516,20 @@ public class IndoorAtlasListener extends CordovaPlugin implements com.indooratla
         log("onCalibrationStatus: event: " + calibrationState.getCalibrationEvent()
                 + ", percentage: " + calibrationState.getPercentage());
 
+        this.roundtrip = 0;
+        this.lat = 0;
+        this.lon = 0;
+        this.timestamp = 0;
+        this.x = 0;
+        this.y = 0;
+        this.pixle_i = 0;
+        this.pixle_j = 0;
+        this.heading = 0;
+        this.uncertainty = 0;
+        this.calibrationState = calibrationState.getCalibrationEvent().toString();
+        this.calibration = calibrationState.getPercentage();
+
+        this.win();
     }
 
     @Override

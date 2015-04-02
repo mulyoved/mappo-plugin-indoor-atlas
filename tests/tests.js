@@ -246,9 +246,19 @@ exports.defineManualTests = function (contentEl, createActionButton) {
 
         // Success callback
         var success = function (a) {
-            document.getElementById('x').innerHTML = roundNumber(a.x);
-            document.getElementById('y').innerHTML = roundNumber(a.y);
-            document.getElementById('z').innerHTML = roundNumber(a.z);
+          console.log("success");
+            document.getElementById('roundtrip').innderHTML = roundNumber(a.roundtrip);
+            document.getElementById('lat').innderHTML = roundNumber(a.lat);
+            document.getElementById('lon').innderHTML = roundNumber(a.lon);
+            document.getElementById('timestamp').innderHTML = a.timestamp;
+            document.getElementById('x').innderHTML = roundNumber(a.x);
+            document.getElementById('y').innderHTML = roundNumber(a.y);
+            document.getElementById('i').innderHTML = a.i;
+            document.getElementById('j').innderHTML = a.j;
+            document.getElementById('heading').innderHTML = roundNumber(a.heading);
+            document.getElementById('uncertainty').innderHTML = roundNumber(a.uncertainty);
+            document.getElementById('calibrationState').innderHTML = a.calibrationState;
+            document.getElementById('calibration').innderHTML = roundNumber(a.calibration);
         };
 
         // Fail callback
@@ -289,9 +299,18 @@ exports.defineManualTests = function (contentEl, createActionButton) {
 
         // Success callback
         var success = function (a) {
-            document.getElementById('x').innerHTML = roundNumber(a.x);
-            document.getElementById('y').innerHTML = roundNumber(a.y);
-            document.getElementById('z').innerHTML = roundNumber(a.z);
+          document.getElementById('roundtrip').innderHTML = roundNumber(a.roundtrip);
+          document.getElementById('lat').innderHTML = roundNumber(a.lat);
+          document.getElementById('lon').innderHTML = roundNumber(a.lon);
+          document.getElementById('timestamp').innderHTML = a.timestamp;
+          document.getElementById('x').innderHTML = roundNumber(a.x);
+          document.getElementById('y').innderHTML = roundNumber(a.y);
+          document.getElementById('i').innderHTML = a.i;
+          document.getElementById('j').innderHTML = a.j;
+          document.getElementById('heading').innderHTML = roundNumber(a.heading);
+          document.getElementById('uncertainty').innderHTML = roundNumber(a.uncertainty);
+          document.getElementById('calibrationState').innderHTML = a.calibrationState;
+          document.getElementById('calibration').innderHTML = roundNumber(a.calibration);
             console.log("getAccel success callback");
         };
 
@@ -316,18 +335,27 @@ exports.defineManualTests = function (contentEl, createActionButton) {
     /******************************************************************************/
 
     var indooratlas_tests = '<div id="getNavPosition"></div>' +
-        'Expected result: Will update the status box with X, Y, and Z values when pressed. Status will read "Stopped"' +
+        'Expected result: Will update the status box with X and Y values when pressed. Status will read "Stopped"' +
         '<p/> <div id="watchNavPosition"></div>' +
-        'Expected result: When pressed, will start a watch on the indooratlas and update X,Y,Z values when movement is sensed. Status will read "Running"' +
+        'Expected result: When pressed, will start a watch on the indooratlas and update X,Y values when movement is sensed. Status will read "Running"' +
         '<p/> <div id="clearNavPosition"></div>' +
         'Expected result: Will clear the indooratlas watch, so X,Y,Z values will no longer be updated. Status will read "Stopped"';
 
     contentEl.innerHTML = '<div id="info">' +
         'Status: <span id="accel_status">Stopped</span>' +
         '<table width="100%">' +
-        '<tr><td width="20%">X:</td><td id="x"> </td></tr>' +
-        '<tr><td width="20%">Y:</td><td id="y"> </td></tr>' +
-        '<tr><td width="20%">Z:</td><td id="z"> </td></tr>' +
+        '<tr><td width="20%">roundtrip:</td><td id="roundtrip"> </td></tr>' +
+        '<tr><td width="20%">lat:</td><td id="lat"> </td></tr>' +
+        '<tr><td width="20%">lon:</td><td id="lon"> </td></tr>' +
+        '<tr><td width="20%">timestamp:</td><td id="timestamp"> </td></tr>' +
+        '<tr><td width="20%">x:</td><td id="x"> </td></tr>' +
+        '<tr><td width="20%">y:</td><td id="y"> </td></tr>' +
+        '<tr><td width="20%">i:</td><td id="i"> </td></tr>' +
+        '<tr><td width="20%">j:</td><td id="j"> </td></tr>' +
+        '<tr><td width="20%">heading:</td><td id="heading"> </td></tr>' +
+        '<tr><td width="20%">uncertainty:</td><td id="uncertainty"> </td></tr>' +
+        '<tr><td width="20%">calibrationState:</td><td id="calibrationState"> </td></tr>' +
+        '<tr><td width="20%">calibration:</td><td id="calibration"> </td></tr>' +
         '</table></div>' +
     indooratlas_tests;
 

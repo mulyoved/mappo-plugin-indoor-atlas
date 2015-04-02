@@ -19,11 +19,19 @@
  *
 */
 
-var NavPosition = function(x, y, z, timestamp) {
+var NavPosition = function(x,y,timestamp,i,j,roundtrip,lat,lon,heading,uncertainty,, calibrationState, calibration) {
     this.x = x;
     this.y = y;
-    this.z = z;
     this.timestamp = timestamp || (new Date()).getTime();
+    this.i = i;
+    this.j = j;
+    this.roundtrip = roundtrip;
+    this.lat = lat;
+    this.lon = lon;
+    this.heading = heading;
+    this.uncertainty = uncertainty;
+    this.calibrationState = calibrationState;
+    this.calibration = calibration;
 };
 
 module.exports = NavPosition;
