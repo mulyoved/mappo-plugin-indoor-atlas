@@ -57,10 +57,13 @@ public class IndoorAtlasListener extends CordovaPlugin implements com.indooratla
     private String mApiKey = "ef07bc2d-dfb0-48b9-b190-03ccf91b1abb";
     private String mApiSecret = "LAcf0QZY0Jn%)i4R3BJ9UU)8UT%xaUU%ievg!s%1ABeMI0VEmIEQZQQKzadd1nu43Mzjvz8zHiUKybVnEG)MWxTrfbERS9V!O8DZkblC6qNttPGS6hrABIivZr4(pur)";
 
-    private String mVenueId = "7de53ef8-0501-4a42-9d20-3124da54de36eue";
-    private String mFloorId = "bd83ff0e-f673-4cd3-acd6-c982a2e16568";
-    private String mFloorPlanId = "4ca7e9af-195a-431a-bc04-ca7f9c59b4e8";
+    //private String mVenueId = "7de53ef8-0501-4a42-9d20-3124da54de36eue";
+    //private String mFloorId = "bd83ff0e-f673-4cd3-acd6-c982a2e16568";
+    //private String mFloorPlanId = "4ca7e9af-195a-431a-bc04-ca7f9c59b4e8";
 
+    private String mVenueId;
+    private String mFloorId;
+    private String mFloorPlanId;
 
     public static int STOPPED = 0;
     public static int STARTING = 1;
@@ -110,9 +113,10 @@ public class IndoorAtlasListener extends CordovaPlugin implements com.indooratla
         this.lon = 0;
         this.heading = 0;
         this.uncertainty = 0;
-        this.calibrationState = 'unknown';
+        this.calibrationState = "unknown";
         this.calibration = 0;
 
+        this.mIsPositioning = false;
         this.setStatus(IndoorAtlasListener.STOPPED);
      }
 
@@ -140,14 +144,20 @@ public class IndoorAtlasListener extends CordovaPlugin implements com.indooratla
      * @param callbackId    The callback id used when calling back into JavaScript.
      * @return              Whether the action was valid.
      */
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
+    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         Log.i(TAG, "execute: "+ action + ", args:" + args.toString());
         if (action.equals("start")) {
             this.callbackContext = callbackContext;
+
+            this.mVenueId = args.getString(0);
+            this.mFloorId = args.getString(1);
+            this.mFloorPlanId = args.getString(2);
+
             if (this.status != IndoorAtlasListener.RUNNING) {
                 // If not running, then this is an async call, so don't worry about waiting
                 // We drop the callback onto our stack, call start, and let start and the sensor callback fire off the callback down the road
                 //this.start();
+
                 startPositioning();
             }
         }

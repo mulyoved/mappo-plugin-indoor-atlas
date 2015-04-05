@@ -40,9 +40,12 @@ var listeners = [];
 // Last returned acceleration object from native
 var accel = null;
 
+var floorPlanId = null;
+
 // Tells native to start.
-function start() {
+function start(options) {
   console.log('indoortlas start');
+  floorPlanId = options.floorPlanId;
   exec(function (a) {
     console.log('result from indooratlas callback', a);
     var tempListeners = listeners.slice(0);
@@ -56,7 +59,7 @@ function start() {
     for (var i = 0, l = tempListeners.length; i < l; i++) {
       tempListeners[i].fail(e);
     }
-  }, "IndoorAtlas", "start", []);
+  }, "IndoorAtlas", "start", [options.venueId, options.floorId, options.floorPlanId]);
   running = true;
 }
 
@@ -114,7 +117,7 @@ var indooratlas = {
     listeners.push(p);
 
     if (!running) {
-      start();
+      start(options);
     }
   },
 
@@ -130,7 +133,7 @@ var indooratlas = {
     argscheck.checkArgs('fFO', 'indooratlas.watchNavPosition', arguments);
 
     var id = utils.createUUID();
-    console.log('watchNavPosition', id);
+    console.log('watchNavPosition', id, arguments);
 
     var p;
     var win = function(a) {
@@ -148,6 +151,11 @@ var indooratlas = {
       listeners: p
     };
 
+    if (floorPlanId !== options.floorPlanId) {
+      console.log('floor plan changed, stop service');
+      stop();
+    }
+
     if (running) {
       console.log('already running');
       // If we're already running then immediately invoke the success callback
@@ -156,7 +164,7 @@ var indooratlas = {
         successCallback(accel);
       }
     } else {
-      start();
+      start(options);
     }
 
     return id;
